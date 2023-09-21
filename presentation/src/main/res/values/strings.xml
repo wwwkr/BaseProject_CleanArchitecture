@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">BaseProject_CleanArchitecture</string>
+
+
+    <string name="positive">예</string>
+    <string name="negative">아니오</string>
+
+    <string name="loading">로딩중입니다.</string>
+    <string name="loading_cancel_title">로딩중입니다.</string>
+    <string name="loading_cancel_message">로딩을 취소하시겠습니까?</string>
+
+</resources>
