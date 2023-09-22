@@ -2,10 +2,13 @@ package com.wwwkr.baseproject_cleanarchitecture.di
 
 import com.wwwkr.data.datasource.local.BaseLocalSource
 import com.wwwkr.data.datasource.remote.LoginRemoteSource
+import com.wwwkr.data.datasource.remote.NewsRemoteSource
 import com.wwwkr.data.repository.BaseRepositoryImpl
 import com.wwwkr.data.repository.LoginRepositoryImpl
+import com.wwwkr.data.repository.NewsRepositoryImpl
 import com.wwwkr.domain.repository.BaseRepository
 import com.wwwkr.domain.repository.LoginRepository
+import com.wwwkr.domain.repository.NewsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,5 +30,13 @@ class RepositoryModule {
     fun loginRepository(
         loginRemoteSource: LoginRemoteSource
     ): LoginRepository = LoginRepositoryImpl(loginRemoteSource = loginRemoteSource)
+
+    @Provides
+    @Singleton
+    fun newsRepository(
+        newsRemoteSource: NewsRemoteSource
+    ): NewsRepository = NewsRepositoryImpl(newsRemoteSource = newsRemoteSource)
+
+
 
 }

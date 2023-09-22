@@ -30,7 +30,7 @@ class NetworkModule {
 
         return Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl("http://13.124.168.43:9000/baekdoo/")
+            .baseUrl("https://newsapi.org/v2/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)
