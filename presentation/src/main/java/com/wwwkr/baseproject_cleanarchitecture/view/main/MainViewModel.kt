@@ -19,6 +19,7 @@ class MainViewModel @Inject constructor(val newsUseCase: NewsUseCase) : BaseView
 
     private val _getNewsStateFlow = MutableStateFlow<UiState<NewsRespData>>(UiState.Empty)
     val getNewsStateFlow = _getNewsStateFlow.asStateFlow()
+
     fun getNews(country : String) = viewModelScope.launch {
         newsUseCase.getNews(country = country)
             .onStart {

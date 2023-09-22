@@ -95,4 +95,11 @@ dependencies {
 
     // DataStore
     implementation(Libraries.DataStore.DATA_STORE)
+
+    // Jetpack
+    implementation(Libraries.JETPACK.NAVIGATION)
+    implementation(Libraries.JETPACK.NAVIGATION_UI)
+
+    // Glide
+    implementation(Libraries.Glide.GLIDE)
 }

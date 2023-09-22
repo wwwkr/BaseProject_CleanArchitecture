@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/fragment_news"
+        android:icon="@drawable/ic_news"
+        android:enabled="true"
+        android:title="@string/text_news"/>
+
+    <item
+        android:id="@+id/fragment_scrap"
+        android:icon="@drawable/ic_scrap"
+        android:enabled="true"
+        android:title="@string/text_scrap"/>
+
+    <item
+        android:id="@+id/deliveryApplyFragment"
+        android:icon="@mipmap/ic_launcher"
+        android:enabled="true"
+        android:title="c"/>
+
+    <item
+        android:id="@+id/settlementFragment"
+        android:icon="@mipmap/ic_launcher"
+        android:enabled="true"
+        android:title="d"/>
+
+</menu>

@@ -34,6 +34,11 @@ object Versions {
     // Firebase
     const val FIREBASE = "32.2.2"
 
+    // Jetpack Navigation
+    const val NAVIGATION = "2.3.5"
+
+    // Glide
+    const val GLIDE = "4.16.0"
 }
 
 
@@ -43,6 +48,7 @@ object Libraries {
         const val APP_COMPAT = "androidx.appcompat:appcompat:${Versions.APP_COMPAT}"
         const val MATERIAL = "com.google.android.material:material:${Versions.MATERIAL}"
         const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:${Versions.CONSTRAINT_LAYOUT}"
+        const val FRAGMENT = "androidx.fragment:fragment:${Versions.KTX_FRAGMENT}"
     }
 
     object KTX {
@@ -90,5 +96,14 @@ object Libraries {
         const val FIREBASE_BOM = "com.google.firebase:firebase-bom:${Versions.FIREBASE}"
         const val FIREBASE_CRASHLYTICS = "com.google.firebase:firebase-crashlytics-ktx"
         const val FIREBASE_ANALYTICS = "com.google.firebase:firebase-analytics-ktx"
+    }
+
+    object JETPACK {
+        const val NAVIGATION = "androidx.navigation:navigation-fragment-ktx:${Versions.NAVIGATION}"
+        const val NAVIGATION_UI = "androidx.navigation:navigation-ui-ktx:${Versions.NAVIGATION}"
+    }
+
+    object Glide {
+        const val GLIDE = "com.github.bumptech.glide:glide:${Versions.GLIDE}"
     }
 }

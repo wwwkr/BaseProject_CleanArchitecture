@@ -8,5 +8,7 @@
     <string name="loading">로딩중입니다.</string>
     <string name="loading_cancel_title">로딩중입니다.</string>
     <string name="loading_cancel_message">로딩을 취소하시겠습니까?</string>
+    <string name="text_news">뉴스</string>
+    <string name="text_scrap">스크랩</string>
 
 </resources>
