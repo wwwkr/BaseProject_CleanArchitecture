@@ -1,8 +1,11 @@
 package com.wwwkr.baseproject_cleanarchitecture.view.news
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.wwwkr.baseproject_cleanarchitecture.databinding.ItemNewsBinding
 import com.wwwkr.domain.model.ArticleData
+
 
 class NewsRecyclerViewAdapter : ListAdapter<ArticleData, NewsRecyclerViewAdapter.ViewHolder>(object : DiffUtil.ItemCallback<ArticleData>() {
 
@@ -38,6 +42,10 @@ class NewsRecyclerViewAdapter : ListAdapter<ArticleData, NewsRecyclerViewAdapter
         holder.bind(getItem(position))
     }
 
+    fun opentLink(context : Context, url : String){
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        context.startActivity(intent)
+    }
     inner class ViewHolder(private val binding: ItemNewsBinding, val context: Context) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ArticleData) {
@@ -47,6 +55,10 @@ class NewsRecyclerViewAdapter : ListAdapter<ArticleData, NewsRecyclerViewAdapter
                 .load(item.urlToImage)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(binding.ivNews)
+
+            binding.root.setOnClickListener {
+                opentLink(context = context, item.url.toString())
+            }
 
         }
     }
