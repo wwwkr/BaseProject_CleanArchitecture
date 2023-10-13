@@ -39,6 +39,9 @@ object Versions {
 
     // Glide
     const val GLIDE = "4.16.0"
+
+    // Kotest
+    const val KOTEST = "5.7.2"
 }
 
 
@@ -60,6 +63,8 @@ object Libraries {
 
     object Test {
         const val JUNIT = "junit:junit:${Versions.UNIT_TEST_JUNIT}"
+        const val KOTEST = "io.kotest:kotest-runner-junit5:${Versions.KOTEST}"
+        const val KOTEST_ASSERTIONS = "io.kotest:kotest-assertions-core-jvm:${Versions.KOTEST}"
     }
 
     object AndroidTest {
@@ -98,7 +103,7 @@ object Libraries {
         const val FIREBASE_ANALYTICS = "com.google.firebase:firebase-analytics-ktx"
     }
 
-    object JETPACK {
+    object Jetpack {
         const val NAVIGATION = "androidx.navigation:navigation-fragment-ktx:${Versions.NAVIGATION}"
         const val NAVIGATION_UI = "androidx.navigation:navigation-ui-ktx:${Versions.NAVIGATION}"
     }
