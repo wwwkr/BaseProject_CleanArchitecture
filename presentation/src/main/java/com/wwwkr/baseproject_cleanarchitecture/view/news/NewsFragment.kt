@@ -34,10 +34,21 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getNews("kr")
+        init()
         subscribeUI()
     }
 
+    private fun init(){
+        viewModel.getNews("kr")
+
+        binding.swipeLayout.apply {
+            setProgressViewEndTarget(false, 0)
+            setOnRefreshListener {
+                viewModel.getNews("kr")
+                isRefreshing = false
+            }
+        }
+    }
 
     private fun subscribeUI(){
 
