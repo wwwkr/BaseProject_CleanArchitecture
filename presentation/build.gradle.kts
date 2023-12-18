@@ -62,6 +62,7 @@ dependencies {
     implementation(Libraries.AndroidX.APP_COMPAT)
     implementation(Libraries.AndroidX.MATERIAL)
     implementation(Libraries.AndroidX.CONSTRAINT_LAYOUT)
+    implementation(Libraries.AndroidX.SWIPE)
 
     // KTX
     implementation(Libraries.KTX.CORE)

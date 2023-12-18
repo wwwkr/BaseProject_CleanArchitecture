@@ -42,6 +42,12 @@ object Versions {
 
     // Kotest
     const val KOTEST = "5.7.2"
+
+    // Mockk
+    const val MOCKK = "1.13.8"
+
+    // SWIPERE
+    const val SWIPE = "1.1.0"
 }
 
 
@@ -52,6 +58,7 @@ object Libraries {
         const val MATERIAL = "com.google.android.material:material:${Versions.MATERIAL}"
         const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:${Versions.CONSTRAINT_LAYOUT}"
         const val FRAGMENT = "androidx.fragment:fragment:${Versions.KTX_FRAGMENT}"
+        const val SWIPE = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     }
 
     object KTX {
@@ -65,6 +72,8 @@ object Libraries {
         const val JUNIT = "junit:junit:${Versions.UNIT_TEST_JUNIT}"
         const val KOTEST = "io.kotest:kotest-runner-junit5:${Versions.KOTEST}"
         const val KOTEST_ASSERTIONS = "io.kotest:kotest-assertions-core-jvm:${Versions.KOTEST}"
+        const val MOCKK = "io.mockk:mockk:${Versions.MOCKK}"
+        const val KOCKK_ANDROID = "io.mockk:mockk-android:${Versions.MOCKK}"
     }
 
     object AndroidTest {
