@@ -3,7 +3,7 @@
 
 #적용 기술
 
-1. 아키텍처 및 디자인 패턴
+1. 아키텍처 및 디자인 패턴<br>
     Multi Module(data, domain, present), Clean Architecture, MVVM Pattern
 
 2. DI
