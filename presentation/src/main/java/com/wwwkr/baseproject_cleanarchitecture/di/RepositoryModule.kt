@@ -1,6 +1,7 @@
 package com.wwwkr.baseproject_cleanarchitecture.di
 
 import com.wwwkr.data.datasource.local.BaseLocalSource
+import com.wwwkr.data.datasource.local.NewsLocalSource
 import com.wwwkr.data.datasource.remote.LoginRemoteSource
 import com.wwwkr.data.datasource.remote.NewsRemoteSource
 import com.wwwkr.data.repository.BaseRepositoryImpl
@@ -34,8 +35,9 @@ class RepositoryModule {
     @Provides
     @Singleton
     fun newsRepository(
-        newsRemoteSource: NewsRemoteSource
-    ): NewsRepository = NewsRepositoryImpl(newsRemoteSource = newsRemoteSource)
+        newsRemoteSource: NewsRemoteSource,
+        newsLocalSource: NewsLocalSource
+    ): NewsRepository = NewsRepositoryImpl(newsRemoteSource = newsRemoteSource, newsLocalSource = newsLocalSource)
 
 
 

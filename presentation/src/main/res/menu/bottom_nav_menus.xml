@@ -13,16 +13,16 @@
         android:enabled="true"
         android:title="@string/text_scrap"/>
 
-    <item
-        android:id="@+id/deliveryApplyFragment"
-        android:icon="@mipmap/ic_launcher"
-        android:enabled="true"
-        android:title="c"/>
+<!--    <item-->
+<!--        android:id="@+id/deliveryApplyFragment"-->
+<!--        android:icon="@mipmap/ic_launcher"-->
+<!--        android:enabled="true"-->
+<!--        android:title="c"/>-->
 
-    <item
-        android:id="@+id/settlementFragment"
-        android:icon="@mipmap/ic_launcher"
-        android:enabled="true"
-        android:title="d"/>
+<!--    <item-->
+<!--        android:id="@+id/settlementFragment"-->
+<!--        android:icon="@mipmap/ic_launcher"-->
+<!--        android:enabled="true"-->
+<!--        android:title="d"/>-->
 
 </menu>

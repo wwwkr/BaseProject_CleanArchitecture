@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.gson.Gson
@@ -13,9 +14,6 @@ import com.wwwkr.baseproject_cleanarchitecture.databinding.FragmentNewsBinding
 import com.wwwkr.baseproject_cleanarchitecture.extensions.repeatOnStarted
 import com.wwwkr.baseproject_cleanarchitecture.view.main.MainViewModel
 
-/**
- * A fragment representing a list of Items.
- */
 class NewsFragment : Fragment() {
 
     private val binding by lazy { FragmentNewsBinding.inflate(layoutInflater) }
@@ -28,6 +26,7 @@ class NewsFragment : Fragment() {
     ): View = binding.apply {
         adapter = this@NewsFragment.adapter
         lifecycleOwner = this@NewsFragment
+        rvNews.itemAnimator = null
     }.root
 
 
@@ -48,6 +47,17 @@ class NewsFragment : Fragment() {
                 isRefreshing = false
             }
         }
+
+        adapter.setOnScrapClickListener = { item ->
+
+            if(item.isScraped) {
+                viewModel.deleteNews(item = item)
+            }else {
+                viewModel.insertNews(item = item)
+            }
+
+        }
+
     }
 
     private fun subscribeUI(){
@@ -60,18 +70,14 @@ class NewsFragment : Fragment() {
                             showLoading()
                         }
 
-
                         is UiState.Error -> {
-                            Log.e("TAG","uiState.errorMessage ${uiState.errorMessage}")
                             hideLoading()
                         }
 
                         is UiState.Success -> {
                             val response = uiState.data
                             adapter.submitList(response.articles)
-                            Log.e("TAG","getNews resp : ${Gson().toJson(response)}")
                             hideLoading()
-
                         }
 
                         UiState.Empty -> {}

@@ -1,5 +1,7 @@
 package com.wwwkr.domain.usecase
 
+import android.util.Log
+import com.wwwkr.domain.model.ArticleData
 import com.wwwkr.domain.model.LoginParamData
 import com.wwwkr.domain.model.LoginRespData
 import com.wwwkr.domain.model.NewsParamData
@@ -19,4 +21,13 @@ class NewsUseCase @Inject constructor(private val newsRepository: NewsRepository
         )
     }
 
+    fun insertNews(item: ArticleData): Flow<Unit> {
+        return newsRepository.insertNews(item = item)
+    }
+
+    fun selectNews(): Flow<List<ArticleData>> {
+        return newsRepository.selectNews()
+    }
+
+    fun deleteNews(title: String): Flow<Unit> = newsRepository.deleteNews(title = title)
 }

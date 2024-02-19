@@ -1,6 +1,7 @@
 package com.wwwkr.data.mapper
 
 import com.wwwkr.data.datasource.local.database.entity.BaseEntity
+import com.wwwkr.data.datasource.local.database.entity.NewsEntity
 import com.wwwkr.data.model.request.LoginParam
 import com.wwwkr.data.model.request.NewsParam
 import com.wwwkr.data.model.response.Article
@@ -53,13 +54,43 @@ fun NewsResp.mappingNewsResp(): NewsRespData =
             description = it.description,
             publishedAt = it.publishedAt,
             source = SourceData(
-                id = it.source?.id,
+//                id = it.source?.id,
                 name = it.source?.name
             ),
             title = it.title,
             url = it.url,
-            urlToImage = it.urlToImage
+            urlToImage = it.urlToImage,
+            isScraped = false
         ) },
         status = status,
         totalResults = totalResults
     )
+
+fun ArticleData.mappingNewsEntity(): NewsEntity =
+    NewsEntity(
+        author = author,
+        content = content,
+        description = description,
+        publishedAt = publishedAt,
+        title = title,
+        url = url,
+        urlToImage = urlToImage,
+        isScraped = isScraped
+    )
+
+fun List<NewsEntity>.mappingArticleDataList(): List<ArticleData> =
+    map {
+        ArticleData(
+            author = it.author,
+            content = it.content,
+            description = it.description,
+            publishedAt = it.publishedAt,
+            source = null,
+            title = it.title,
+            url = it.url,
+            urlToImage = it.urlToImage,
+            isScraped = it.isScraped
+        )
+    }
+
+

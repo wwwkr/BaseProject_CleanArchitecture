@@ -18,7 +18,7 @@ data class Article(
 )
 
 data class Source(
-    val id: Int?,
+//    val id: Int?,
     val name: String?
 )
 

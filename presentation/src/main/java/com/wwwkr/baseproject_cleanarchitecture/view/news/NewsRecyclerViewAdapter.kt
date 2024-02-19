@@ -5,28 +5,29 @@ import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
+import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.wwwkr.baseproject_cleanarchitecture.R
 import com.wwwkr.baseproject_cleanarchitecture.databinding.ItemNewsBinding
 import com.wwwkr.domain.model.ArticleData
 
 
 class NewsRecyclerViewAdapter : ListAdapter<ArticleData, NewsRecyclerViewAdapter.ViewHolder>(object : DiffUtil.ItemCallback<ArticleData>() {
 
-
     override fun areItemsTheSame(oldItem: ArticleData, newItem: ArticleData): Boolean {
         return oldItem == newItem
     }
 
     override fun areContentsTheSame(oldItem: ArticleData, newItem: ArticleData): Boolean {
-        return oldItem.url == newItem.url && oldItem.content == newItem.content
+        return oldItem.title == newItem.title
     }
 }) {
-
+    var setOnScrapClickListener: ( (ArticleData) -> Unit )? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         return ViewHolder(
@@ -42,7 +43,7 @@ class NewsRecyclerViewAdapter : ListAdapter<ArticleData, NewsRecyclerViewAdapter
         holder.bind(getItem(position))
     }
 
-    fun opentLink(context : Context, url : String){
+    fun openLink(context : Context, url : String){
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         context.startActivity(intent)
     }
@@ -57,11 +58,18 @@ class NewsRecyclerViewAdapter : ListAdapter<ArticleData, NewsRecyclerViewAdapter
                 .into(binding.ivNews)
 
             binding.root.setOnClickListener {
-                opentLink(context = context, item.url.toString())
+                openLink(context = context, item.url.toString())
+            }
+
+            binding.ivScrap.setOnClickListener {
+                setOnScrapClickListener?.invoke(item)
+            }
+            if(item.isScraped) {
+                binding.ivScrap.setImageDrawable(ResourcesCompat.getDrawable(context.resources, R.drawable.ic_full_hart, null))
+            }else {
+                binding.ivScrap.setImageDrawable(ResourcesCompat.getDrawable(context.resources, R.drawable.ic_empty_hart, null))
             }
 
         }
     }
-
-
 }

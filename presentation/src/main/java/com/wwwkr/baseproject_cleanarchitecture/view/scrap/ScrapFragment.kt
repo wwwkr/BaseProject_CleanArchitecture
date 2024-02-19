@@ -5,48 +5,73 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.wwwkr.baseproject_cleanarchitecture.R
+import androidx.fragment.app.activityViewModels
+import com.wwwkr.baseproject_cleanarchitecture.components.UiState
+import com.wwwkr.baseproject_cleanarchitecture.databinding.FragmentScrapBinding
+import com.wwwkr.baseproject_cleanarchitecture.extensions.repeatOnStarted
+import com.wwwkr.baseproject_cleanarchitecture.view.main.MainViewModel
 
-/**
- * A fragment representing a list of Items.
- */
 class ScrapFragment : Fragment() {
 
-    private var columnCount = 1
+    private val binding by lazy { FragmentScrapBinding.inflate(layoutInflater) }
+    private val adapter by lazy { ScrapRecyclerViewAdapter() }
+    private val viewModel: MainViewModel by activityViewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        arguments?.let {
-            columnCount = it.getInt(ARG_COLUMN_COUNT)
-        }
-    }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View = binding.apply {
+        adapter = this@ScrapFragment.adapter
+        lifecycleOwner = this@ScrapFragment
+        rvNews.itemAnimator = null
+    }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-    }
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_scrap, container, false)
-
-        return view
+        init()
+        subscribeUI()
     }
 
-    companion object {
+    private fun init() {
+        viewModel.getScrapNews()
 
-        // TODO: Customize parameter argument names
-        const val ARG_COLUMN_COUNT = "column-count"
+        binding.swipeLayout.apply {
+            setProgressViewEndTarget(false, 0)
+            setOnRefreshListener {
+                viewModel.getScrapNews()
+                isRefreshing = false
+            }
+        }
 
-        // TODO: Customize parameter initialization
-        @JvmStatic
-        fun newInstance(columnCount: Int) =
-            ScrapFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_COLUMN_COUNT, columnCount)
+        adapter.setOnScrapClickListener = { item ->
+
+            if (item.isScraped) {
+                viewModel.deleteNews(item = item, isScrapView = true)
+            } else {
+                viewModel.insertNews(item = item, isScrapView = true)
+            }
+
+        }
+
+    }
+
+    private fun subscribeUI() {
+
+        repeatOnStarted {
+            viewModel.apply {
+                getScrapNewsStateFlow.collect { uiState ->
+                    when (uiState) {
+
+                        is UiState.Success -> {
+                            val response = uiState.data
+                            adapter.submitList(response)
+                        }
+
+                        else -> {}
+                    }
                 }
             }
+        }
     }
 }
