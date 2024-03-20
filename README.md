@@ -18,7 +18,7 @@
 5. 네트워크 통신<br>
     Retrofit2, Okhttp3
 
-6. JectPack<br>
+6. Jetpack<br>
     Databinding, ViewModel, Navigation
 
 7. 테스트<br>
